@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "5384173140",
+    "firebase_url": "https://billersapp.firebaseio.com",
+    "project_id": "billersapp",
+    "storage_bucket": "billersapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:5384173140:android:fc1cf8e2f07b18c1",
+        "android_client_info": {
+          "package_name": "jd.bills.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "5384173140-4pn73tbmgkfl1d8uqo58jdsor5o10hk5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCM8rw_38j-sndpPmqVw6-1QO3j3PIfFFo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "5384173140-4pn73tbmgkfl1d8uqo58jdsor5o10hk5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
