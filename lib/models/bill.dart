@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 
 class Bill {
-  IconData billIcon;
+  String billImage;
   String billTitle;
-  String billSubTitle;
+  int amount;
   bool isPaid;
   int dueDate;
   String uuid;
 
   Bill({
-    this.billIcon = Icons.phone_iphone,
+    this.billImage = "image unset",
     this.billTitle = "billTitle",
-    this.billSubTitle = "billSubTitle",
-    this.isPaid,
+    this.amount = 40,
+    this.isPaid = false,
     this.dueDate = 1,
     this.uuid,
   });
 
   Bill.copyFromBill(Bill bill) {
-    this.billIcon = bill.billIcon;
+    this.billImage = bill.billImage;
     this.billTitle = bill.billTitle;
-    this.billSubTitle = bill.billSubTitle;
     this.isPaid = bill.isPaid;
     this.dueDate = bill.dueDate;
+    this.amount = bill.amount;
     this.uuid = bill.uuid;
   }
 }

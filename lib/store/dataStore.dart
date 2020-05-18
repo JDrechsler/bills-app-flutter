@@ -1,33 +1,37 @@
 import 'package:bills_app_flutter/models/bill.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
 class DataStore extends ChangeNotifier {
   String data = "This is some data";
   String title = "This is my title";
+  bool userIsLoggedIn = false;
+  FirebaseUser currentUser = null;
+
   int myNum = 0;
   Bill updatedBill = Bill();
   List<Bill> bills = [
     Bill(
-      billIcon: Icons.phone_iphone,
+      billImage: "",
       billTitle: "Phone Bill",
-      billSubTitle: "\$300",
+      amount: 300,
       isPaid: false,
       dueDate: 3,
       uuid: Uuid().v1(),
     ),
     Bill(
-      billIcon: Icons.phone_iphone,
+      billImage: "",
       billTitle: "Phone Bill",
-      billSubTitle: "\$300",
+      amount: 300,
       isPaid: false,
       dueDate: 2,
       uuid: Uuid().v1(),
     ),
     Bill(
-      billIcon: Icons.phone_iphone,
+      billImage: "",
       billTitle: "Phone Bill",
-      billSubTitle: "\$300",
+      amount: 300,
       isPaid: true,
       dueDate: 1,
       uuid: Uuid().v1(),
@@ -46,6 +50,7 @@ class DataStore extends ChangeNotifier {
 
   void saveChangesToBill(Bill billOld, Bill billNew) {
     billOld = billNew;
+    notifyListeners();
   }
 
   void setPreviewUpdatedBill(Bill bill) {
@@ -71,6 +76,39 @@ class DataStore extends ChangeNotifier {
 
   void decNum() {
     myNum--;
+    notifyListeners();
+  }
+
+  Future<void> setCurrentUserFromSignUp(FirebaseUser newUser) async {
+    try {
+      final _auth = FirebaseAuth.instance;
+      final user = await _auth.currentUser();
+
+      if (user != null) {
+        currentUser = user;
+      }
+    } catch (e) {
+      print(e);
+    }
+    notifyListeners();
+  }
+
+  Future<void> setCurrentUserFromLogin(FirebaseUser existingUser) async {
+    try {
+      final _auth = FirebaseAuth.instance;
+      final user = await _auth.currentUser();
+
+      if (user != null) {
+        currentUser = user;
+      }
+    } catch (e) {
+      print(e);
+    }
+    notifyListeners();
+  }
+
+  void clearCurrentUser() {
+    currentUser = null;
     notifyListeners();
   }
 }

@@ -10,9 +10,9 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Hmmm"),
+        title: Text("Home"),
       ),
-      drawer: buildDrawer(context),
+      drawer: buildDrawer(dataStore, context),
       body: Container(
         decoration: BoxDecoration(
           color: Colors.lightBlueAccent,

@@ -1,5 +1,5 @@
 import 'package:bills_app_flutter/models/bill.dart';
-import 'package:bills_app_flutter/screens/optionsScreen.dart';
+import 'package:bills_app_flutter/screens/editBillScreen.dart';
 import 'package:bills_app_flutter/store/dataStore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,10 +23,14 @@ class BillsCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           ListTile(
-            leading: Icon(bill.billIcon, size: 70),
+            // leading: Text(bill.billImage),
             title: Text(bill.billTitle, style: TextStyle(color: Colors.white)),
-            subtitle:
-                Text(bill.billSubTitle, style: TextStyle(color: Colors.white)),
+            subtitle: Text(
+              "\$${bill.amount.toString()}",
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
             trailing: Text(
               bill.dueDate.toString(),
               style: TextStyle(fontSize: 21, color: Colors.white),
@@ -52,7 +56,7 @@ class BillsCard extends StatelessWidget {
                   dataStore.setPreviewUpdatedBill(bill);
                   showModalBottomSheet(
                     context: context,
-                    builder: (context) => OptionsScreen(
+                    builder: (context) => EditBillScreen(
                       billCurrent: bill,
                     ),
                   );
