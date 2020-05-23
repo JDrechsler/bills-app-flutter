@@ -1,6 +1,7 @@
 import 'package:bills_app_flutter/models/bill.dart';
 import 'package:bills_app_flutter/screens/editBillScreen.dart';
 import 'package:bills_app_flutter/store/dataStore.dart';
+import 'package:bills_app_flutter/store/firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,6 +13,7 @@ class BillsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DataStore dataStore = Provider.of<DataStore>(context);
+    FirestoreStore fireStore = FirestoreStore();
 
     return Card(
       shape: RoundedRectangleBorder(
@@ -41,8 +43,9 @@ class BillsCard extends StatelessWidget {
               bill.isPaid
                   ? Text("")
                   : FlatButton(
-                      onPressed: () {
-                        dataStore.markBillAsPaid(bill);
+                      onPressed: () async {
+                        await fireStore
+                            .updateDocument(bill.uuid, {'isPaid': true});
                       },
                       child: Text(
                         "Mark as paid",

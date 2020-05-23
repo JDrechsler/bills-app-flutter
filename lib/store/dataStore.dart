@@ -7,10 +7,13 @@ class DataStore extends ChangeNotifier {
   String data = "This is some data";
   String title = "This is my title";
   bool userIsLoggedIn = false;
-  FirebaseUser currentUser = null;
+  FirebaseUser currentUser;
 
+  String newTitle = '';
+  int newAmount = 0;
   int myNum = 0;
   Bill updatedBill = Bill();
+  Bill newBill = Bill();
   List<Bill> bills = [
     Bill(
       billImage: "",
@@ -45,6 +48,21 @@ class DataStore extends ChangeNotifier {
 
   void markBillAsUnpaid(Bill bill) {
     bill.isPaid = false;
+    notifyListeners();
+  }
+
+  void setDueDate(Bill bill, int newDateDay) {
+    bill.dueDate = newDateDay;
+    notifyListeners();
+  }
+
+  void setTitle(Bill bill, String newTitle) {
+    bill.billTitle = newTitle;
+    notifyListeners();
+  }
+
+  void setAmount(Bill bill, int newAmount) {
+    bill.amount = newAmount;
     notifyListeners();
   }
 

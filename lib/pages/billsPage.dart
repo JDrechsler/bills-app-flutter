@@ -1,16 +1,30 @@
 import 'package:bills_app_flutter/models/bill.dart';
+import 'package:bills_app_flutter/screens/addBillScreen.dart';
+import 'package:bills_app_flutter/store/dataStore.dart';
 import 'package:bills_app_flutter/widgets/billCard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class BillsPage extends StatelessWidget {
   final _firestore = Firestore.instance;
 
   @override
   Widget build(BuildContext context) {
+    DataStore dataStore = Provider.of<DataStore>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("Bills Page"),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          dataStore.newBill = Bill();
+          showModalBottomSheet(
+            context: context,
+            builder: (context) => AddBillScreen(),
+          );
+        },
+        child: Icon(Icons.add),
       ),
       body: Container(
         child: Column(
