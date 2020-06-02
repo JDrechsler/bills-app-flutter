@@ -59,8 +59,17 @@ class BillsCard extends StatelessWidget {
                   dataStore.setPreviewUpdatedBill(bill);
                   showModalBottomSheet(
                     context: context,
-                    builder: (context) => EditBillScreen(
-                      billCurrent: bill,
+                    backgroundColor: Colors.white.withOpacity(0.9),
+                    shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(15.0))),
+                    isScrollControlled: true,
+                    builder: (context) => SingleChildScrollView(
+                      child: Container(
+                        padding: EdgeInsets.only(
+                            bottom: MediaQuery.of(context).viewInsets.bottom),
+                        child: EditBillScreen(),
+                      ),
                     ),
                   );
                 },

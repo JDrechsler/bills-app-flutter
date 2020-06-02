@@ -20,8 +20,19 @@ class BillsPage extends StatelessWidget {
         onPressed: () {
           dataStore.newBill = Bill();
           showModalBottomSheet(
+            backgroundColor: Colors.white.withOpacity(0.9),
+            shape: RoundedRectangleBorder(
+                borderRadius:
+                    BorderRadius.vertical(top: Radius.circular(15.0))),
+            isScrollControlled: true,
             context: context,
-            builder: (context) => AddBillScreen(),
+            builder: (context) => SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
+                child: AddBillScreen(),
+              ),
+            ),
           );
         },
         child: Icon(Icons.add),

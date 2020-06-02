@@ -46,9 +46,8 @@ class AddBillScreen extends StatelessWidget {
               decoration: InputDecoration(labelText: 'Enter bill due date'),
               keyboardType: TextInputType.number,
             ),
-            Expanded(child: SizedBox()),
             Padding(
-              padding: const EdgeInsets.only(bottom: 20),
+              padding: EdgeInsets.only(top: 20),
               child: SizedBox(
                 width: double.infinity,
                 height: 50,
